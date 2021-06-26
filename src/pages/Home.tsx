@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import {
     View,
@@ -10,6 +10,12 @@ import { ButtonAdd } from '../components/ButtonAdd';
 import { CategorySelect } from '../components/CategorySelect';
 
 export function Home() {
+    const [category, setCategory ] = useState('');
+
+    function handleCategorySelecr(categoryId: string) {
+
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -17,8 +23,11 @@ export function Home() {
                 <ButtonAdd />
             </View>
 
-            <View>
-                <CategorySelect />
+            <View style={styles.content}>
+                <CategorySelect
+                    categorySelected={category}
+                    setCategory={setCategory}
+                />
             </View>
                 
         </View>
@@ -36,5 +45,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginTop: getStatusBarHeight() + 26,
         marginBottom: 42
+    },
+    content: {
+        width: '100%',
     }
 })
