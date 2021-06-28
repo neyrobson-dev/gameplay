@@ -15,7 +15,7 @@ type Props = RectButtonProps & {
 export function Category({
     title,
     icon: Icon,
-    checked = false,
+    checked = true,
     ...rest
 }: Props) {
     return (
@@ -24,13 +24,15 @@ export function Category({
                 style={styles.container}
                 colors={[theme.colors.secondary50, theme.colors.secondary70]}
             >
-                <View style={[styles.content, { opacity: checked ? 1 : 0.7 }]}>
-                    <View style={checked ? styles.checked : styles.unchecked}>
-                        <Icon
-                            width={48}
-                            height={48} 
-                        />
-                    </View>
+                <View style={[styles.content, { opacity: checked ? 1 : 0.4 }]}>
+                    <View
+                        style={checked ? styles.checked : styles.unchecked} 
+                    />
+
+                    <Icon
+                        width={48}
+                        height={48} 
+                    />
 
                     <Text style={styles.title}>
                         {title}
@@ -61,12 +63,25 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: theme.fonts.title500,
-        color: theme.colors.heading
+        color: theme.colors.heading,
+        fontSize: 15
     },
     checked: {
-        
+        width: 10,
+        height: 10,
+        backgroundColor: theme.colors.primary,
+        alignSelf: 'flex-end',
+        marginRight: 7,      
+        borderRadius: 3
     },
     unchecked: {
-
+        width: 12,
+        height: 12,
+        backgroundColor: theme.colors.secondary100,
+        alignSelf: 'flex-end',
+        marginRight: 7,
+        borderColor: theme.colors.secondary50,
+        borderWidth: 2,
+        borderRadius: 3
     }
 });

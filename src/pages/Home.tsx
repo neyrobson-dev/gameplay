@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import {
     View,
+    FlatList,
     StyleSheet,
 } from 'react-native';
 
@@ -13,7 +14,7 @@ export function Home() {
     const [category, setCategory ] = useState('');
 
     function handleCategorySelecr(categoryId: string) {
-
+        categoryId == category ? setCategory('') : setCategory(categoryId);
     }
 
     return (
@@ -23,12 +24,17 @@ export function Home() {
                 <ButtonAdd />
             </View>
 
-            <View style={styles.content}>
+            <View>
                 <CategorySelect
                     categorySelected={category}
-                    setCategory={setCategory}
+                    setCategory={handleCategorySelecr}
                 />
-            </View>
+                
+                <View style={styles.content}>
+                    <FlatList 
+                    />
+                </View>
+            </View>            
                 
         </View>
     )
@@ -47,6 +53,6 @@ const styles = StyleSheet.create({
         marginBottom: 42
     },
     content: {
-        width: '100%',
+        marginTop: 42,
     }
 })
